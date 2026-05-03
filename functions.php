@@ -42,6 +42,43 @@ function artonskin_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'artonskin_enqueue_assets' );
 
+// CPT: Testimonials
+function artonskin_register_testimonials_cpt() {
+	register_post_type( 'testimonials', array(
+		'public'              => false,
+		'show_ui'             => true,
+		'show_in_rest'        => true,
+		'rest_base'           => 'testimonials',
+		'label'               => 'Testimonials',
+		'menu_icon'           => 'dashicons-format-quote',
+		'supports'            => array( 'title', 'editor', 'custom-fields' ),
+	) );
+}
+add_action( 'init', 'artonskin_register_testimonials_cpt' );
+
+// Expose custom meta fields in REST API
+function artonskin_register_testimonials_rest_fields() {
+	$fields = array(
+		'rating'      => '_testimonial_rating',
+		'author_name' => '_testimonial_author',
+		'position'    => '_testimonial_position',
+	);
+
+	foreach ( $fields as $field_name => $meta_key ) {
+		register_rest_field(
+			'testimonials',
+			$field_name,
+			array(
+				'get_callback' => function( $post ) use ( $meta_key ) {
+					return get_post_meta( $post['id'], $meta_key, true );
+				},
+				'schema' => array( 'type' => 'string' ),
+			)
+		);
+	}
+}
+add_action( 'rest_api_init', 'artonskin_register_testimonials_rest_fields' );
+
 // REST API endpoint for booking form
 function artonskin_register_booking_endpoint() {
 	register_rest_route( 'artonskin/v1', '/booking', array(
