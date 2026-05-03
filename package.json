@@ -1,0 +1,16 @@
+{
+  "name": "artonskin",
+  "private": true,
+  "scripts": {
+    "build:css": "sass assets/scss/style.scss assets/css/theme.css --style=expanded",
+    "watch:css": "sass --watch assets/scss/style.scss:assets/css/theme.css --style=expanded"
+  },
+  "devDependencies": {
+    "sass": "^1.93.2"
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions"
+  ]
+}

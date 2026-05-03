@@ -1,0 +1,134 @@
+.hero {
+  max-width: none;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("https://www.figma.com/api/mcp/asset/30ccb8b8-1665-440f-90db-2f84b3dc2bfe");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  margin-top: 0;
+
+  > .container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  &__heading-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 68px;
+    line-height: 105%;
+    text-align: center;
+    color: #fff;
+  }
+
+  &__subtitle {
+    margin: 0;
+    max-width: 434px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 145%;
+    text-align: center;
+    color: #d1d5dc;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__button {
+    width: 188px;
+    height: 64px;
+    border-radius: 33554400px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 162%;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+
+    &--primary {
+      background: #e7000b;
+      border: 1px solid #e7000b;
+    }
+
+    &--secondary {
+      border: 2px solid #fff;
+      background: transparent;
+      line-height: 163%;
+    }
+  }
+
+  &__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 999px;
+
+    span {
+      display: block;
+      width: 4px;
+      height: 6px;
+      background: #fff;
+      border-radius: 999px;
+      margin: 8px auto 0;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: 100dvh;
+    padding: 24px 16px;
+
+    &__title {
+      font-size: clamp(40px, 11vw, 68px);
+    }
+
+    &__subtitle {
+      font-size: clamp(18px, 4vw, 22px);
+    }
+
+    > .container {
+      padding: 0 16px;
+    }
+  }
+}
