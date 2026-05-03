@@ -34,5 +34,54 @@ function artonskin_enqueue_assets() {
 		'1.0.0',
 		true
 	);
+
+	wp_localize_script( 'artonskin-main', 'artonskinData', array(
+		'restUrl' => esc_url_raw( rest_url() ),
+		'nonce'   => wp_create_nonce( 'wp_rest' ),
+	) );
 }
 add_action( 'wp_enqueue_scripts', 'artonskin_enqueue_assets' );
+
+// REST API endpoint for booking form
+function artonskin_register_booking_endpoint() {
+	register_rest_route( 'artonskin/v1', '/booking', array(
+		'methods'             => 'POST',
+		'callback'            => 'artonskin_handle_booking',
+		'permission_callback' => '__return_true',
+		'args'                => array(
+			'name'        => array( 'required' => true, 'sanitize_callback' => 'sanitize_text_field' ),
+			'phone'       => array( 'required' => true, 'sanitize_callback' => 'sanitize_text_field' ),
+			'email'       => array( 'required' => true, 'sanitize_callback' => 'sanitize_email' ),
+			'service'     => array( 'required' => true, 'sanitize_callback' => 'sanitize_text_field' ),
+			'description' => array( 'required' => true, 'sanitize_callback' => 'sanitize_textarea_field' ),
+		),
+	) );
+}
+add_action( 'rest_api_init', 'artonskin_register_booking_endpoint' );
+
+function artonskin_handle_booking( WP_REST_Request $request ) {
+	$name        = $request->get_param( 'name' );
+	$phone       = $request->get_param( 'phone' );
+	$email       = $request->get_param( 'email' );
+	$service     = $request->get_param( 'service' );
+	$description = $request->get_param( 'description' );
+
+	$post_id = wp_insert_post( array(
+		'post_title'   => sanitize_text_field( $name . ' — ' . $service ),
+		'post_content' => sanitize_textarea_field( $description ),
+		'post_status'  => 'private',
+		'post_type'    => 'booking_request',
+		'meta_input'   => array(
+			'_booking_name'    => $name,
+			'_booking_phone'   => $phone,
+			'_booking_email'   => $email,
+			'_booking_service' => $service,
+		),
+	) );
+
+	if ( is_wp_error( $post_id ) ) {
+		return new WP_REST_Response( array( 'message' => 'Could not save booking.' ), 500 );
+	}
+
+	return new WP_REST_Response( array( 'message' => 'Booking received.' ), 200 );
+}
