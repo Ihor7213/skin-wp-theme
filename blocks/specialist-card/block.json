@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "artonskin/specialist-card",
+  "version": "1.0.0",
+  "title": "Specialist Card",
+  "category": "widgets",
+  "icon": "id-alt",
+  "description": "Displays a specialist/artist card with photo, name, role and years of experience.",
+  "textdomain": "artonskin",
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "role": {
+      "type": "string",
+      "default": ""
+    },
+    "years": {
+      "type": "string",
+      "default": ""
+    },
+    "photoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "photoAlt": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}

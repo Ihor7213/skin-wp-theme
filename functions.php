@@ -42,6 +42,12 @@ function artonskin_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'artonskin_enqueue_assets' );
 
+// Gutenberg block: Specialist Card
+function artonskin_register_blocks() {
+	register_block_type( get_template_directory() . '/blocks/specialist-card' );
+}
+add_action( 'init', 'artonskin_register_blocks' );
+
 // CPT: Testimonials
 function artonskin_register_testimonials_cpt() {
 	register_post_type( 'testimonials', array(

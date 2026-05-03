@@ -1,0 +1,74 @@
+.specialist-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 24px;
+  max-width: 400px;
+  margin: 0;
+}
+
+.specialist-card__photo-wrap {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #27272a;
+}
+
+.specialist-card__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.specialist-card__photo-btn {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.specialist-card__photo-placeholder {
+  font-size: 11px;
+  color: #99a1af;
+  text-align: center;
+}
+
+.specialist-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.specialist-card__name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.specialist-card__role {
+  margin: 0;
+  font-size: 14px;
+  color: #99a1af;
+  line-height: 1.5;
+}
+
+.specialist-card__years {
+  margin: 0;
+  font-size: 13px;
+  color: #fb2c36;
+  font-weight: 600;
+  line-height: 1.5;
+}
