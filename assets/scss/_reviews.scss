@@ -53,6 +53,26 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    &--skeleton {
+      background: linear-gradient(90deg, #18181b 25%, #27272a 50%, #18181b 75%);
+      background-size: 200% 100%;
+      animation: skeleton-shimmer 1.4s infinite;
+      border: none;
+    }
+  }
+
+  @keyframes skeleton-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  #reviews-skeleton[hidden] { display: none; }
+  .reviews-error {
+    color: #99a1af;
+    font-family: var(--font-family);
+    font-size: 15px;
+    text-align: center;
   }
 
   .review-stars {

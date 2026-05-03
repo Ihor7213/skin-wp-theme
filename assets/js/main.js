@@ -570,3 +570,76 @@
 
   document.addEventListener("app:languagechange", revalidateInvalidFieldsAfterLanguageChange);
 })();
+
+// Testimonials module — async fetch with skeleton loader and error handling
+(() => {
+  const list     = document.querySelector("#reviews-list");
+  const skeleton = document.querySelector("#reviews-skeleton");
+  const errorEl  = document.querySelector("#reviews-error");
+
+  if (!list || !skeleton) return;
+
+  const STAR_SVG = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" fill="#FB2C36"/></svg>`;
+
+  function buildStars(rating) {
+    const count = Math.min(Math.max(parseInt(rating, 10) || 5, 1), 5);
+    return STAR_SVG.repeat(count);
+  }
+
+  function stripTags(html) {
+    const tmp = document.createElement("div");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  }
+
+  function renderCards(items) {
+    const fragment = document.createDocumentFragment();
+
+    items.forEach((item) => {
+      const author = item.author_name || item.title.rendered;
+      const text   = stripTags(item.content.rendered);
+      const rating = item.rating || "5";
+      const pos    = item.position || "";
+
+      const card = document.createElement("blockquote");
+      card.className = "review-card";
+      card.innerHTML = `
+        <div class="review-stars" aria-label="Rating: ${rating} out of 5">${buildStars(rating)}</div>
+        <p>"${text}"</p>
+        <cite>${author}${pos ? ` &mdash; ${pos}` : ""}</cite>
+      `;
+      fragment.appendChild(card);
+    });
+
+    skeleton.hidden = true;
+    list.appendChild(fragment);
+  }
+
+  function showError(msg) {
+    skeleton.hidden = true;
+    if (errorEl) {
+      errorEl.textContent = msg;
+      errorEl.hidden = false;
+    }
+  }
+
+  async function loadTestimonials() {
+    const base = (typeof artonskinData !== "undefined" && artonskinData.restUrl)
+      ? artonskinData.restUrl
+      : "/site/wp-json/";
+
+    const url = base.replace(/\/?$/, "/") + "wp/v2/testimonials?_fields=id,title,content,rating,author_name,position&per_page=10";
+
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (!Array.isArray(data) || data.length === 0) throw new Error("empty");
+      renderCards(data);
+    } catch {
+      showError("Could not load reviews. Please try again later.");
+    }
+  }
+
+  loadTestimonials();
+})();
