@@ -72,3 +72,34 @@
   font-weight: 600;
   line-height: 1.5;
 }
+
+.specialist-card__bio {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #71717a;
+  line-height: 1.6;
+}
+
+.specialist-card__cta-wrap {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.specialist-card__cta {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 20px;
+  background: #fb2c36;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: opacity 0.2s;
+}
+
+.specialist-card__cta:hover {
+  opacity: 0.85;
+}
