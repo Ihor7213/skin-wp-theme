@@ -1,94 +1,28 @@
 .site-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   width: 100%;
-  padding: 32px 24px;
+  height: 89px;
+  padding: 0 24px;
   background: #18181b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
 
-  &__inner {
-    max-width: 1152px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  &__brand {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  &__logo {
-    font-family: var(--font-family);
-    font-size: 18px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.05em;
-  }
-
-  &__copy {
+  p {
     margin: 0;
     font-family: var(--font-family);
-    font-size: 13px;
+    font-weight: 400;
+    font-size: clamp(11px, 2vw, 15px);
+    line-height: 159%;
+    text-align: center;
     color: #99a1af;
     white-space: nowrap;
-  }
-
-  &__nav {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-
-    a {
-      font-family: var(--font-family);
-      font-size: 14px;
-      color: #99a1af;
-      text-decoration: none;
-      transition: color 0.2s;
-
-      &:hover {
-        color: #fff;
-      }
-    }
-  }
-
-  &__social {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
-
-  &__social-link {
-    color: #99a1af;
-    display: flex;
-    align-items: center;
-    transition: color 0.2s;
-
-    &:hover {
-      color: #fb2c36;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .site-footer {
-    &__inner {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 24px;
-    }
   }
 }
 
 @media (max-width: 600px) {
   .site-footer {
-    padding: 24px 16px;
-
-    &__nav {
-      gap: 16px;
-    }
+    padding: 0 16px;
   }
 }
