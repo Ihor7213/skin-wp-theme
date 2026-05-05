@@ -9,6 +9,7 @@
   "description": "Artist/specialist card with photo, name, role, bio and CTA button.",
   "textdomain": "artonskin",
   "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
   "style": "file:./style.css",
   "attributes": {
     "name": {

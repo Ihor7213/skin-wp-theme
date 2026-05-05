@@ -1,0 +1,15 @@
+.specialist-card .specialist-card__cta-wrap .components-base-control__label {
+  color: #99a1af;
+}
+
+.specialist-card .specialist-card__cta-wrap input[type="text"],
+.specialist-card .specialist-card__cta-wrap input[type="url"] {
+  background: #27272a;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.specialist-card .specialist-card__cta-wrap .block-editor-url-input input {
+  background: #27272a;
+  color: #fff;
+}
