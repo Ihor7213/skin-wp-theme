@@ -122,9 +122,17 @@ site-tattoo/
 ### Task 3 — Gutenberg Block "Specialist Card"
 Custom block registered at `blocks/specialist-card/`.
 
-**Attributes:** `name`, `role`, `years`, `photoUrl`, `photoAlt`
+**Attributes:** `name`, `role`, `years`, `bio`, `ctaText`, `ctaUrl`, `photoUrl`, `photoAlt`
 
 **Usage:** WordPress Admin → any page → Block inserter → search "Specialist Card"
+
+#### Screenshots
+
+**Editor view:**
+![Specialist Card in Gutenberg editor](screenshots/block-editor.png)
+
+**Frontend view:**
+![Specialist Card on frontend](screenshots/block-frontend.png)
 
 ### Task 4 — Testimonials REST API
 - Custom Post Type `testimonials` registered with `show_in_rest: true`
